@@ -4,6 +4,8 @@
  * @param {number} x
  * @return {number}
  */
+ 
+ // 方法一
 var reverse = function(x) {
     let str = String(x)
     let isMinus = str[0] === '-'
@@ -15,6 +17,22 @@ var reverse = function(x) {
     ret = isMinus ? ret * -1 : ret
     if (ret < -(2**31) || ret > (2**31) -1) {return 0}
     return ret
+};
+
+// 方法二 80ms
+var reverse = function(x) {
+    let ret = 0, pop = 0
+    let slice = x < 0 ? Math.ceil : Math.floor
+    while(x !== 0) {
+        pop = x % 10
+        ret = ret * 10 + pop
+        x = slice(x / 10)
+    }
+    if(ret > (2**31) -1 || ret < -(2**31)) {
+        return 0
+    } else {
+        return ret
+    }
 };
 ```
 
