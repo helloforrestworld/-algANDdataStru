@@ -1,4 +1,4 @@
-- https://leetcode-cn.com/problems/reverse-integer/description/ 反转有范围整数
+- https://leetcode-cn.com/problems/reverse-integer/description/ 反转有范围整数 --- 题号7 难度: ⭐ 
 ```javascript
 /**
  * @param {number} x
@@ -19,7 +19,7 @@ var reverse = function(x) {
     return ret
 };
 
-// 方法二 80ms
+// 方法二 
 var reverse = function(x) {
     let ret = 0, pop = 0
     let slice = x < 0 ? Math.ceil : Math.floor
@@ -36,7 +36,7 @@ var reverse = function(x) {
 };
 ```
 
-- https://leetcode-cn.com/problems/two-sum/description/ 两数之和
+- https://leetcode-cn.com/problems/two-sum/description/ 两数之和 --- 题号1 难度: ⭐ 
 ```javascript
 /**
  * @param {number[]} nums
@@ -62,7 +62,7 @@ var twoSum = function(nums, target) {
     return result
 };
 ```
-- https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/description/ 删除排序数组中的重复项
+- https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/description/ 删除排序数组中的重复项 --- 题号26 难度: ⭐ 
 ```javascript
 /**
  * @param {number[]} nums
