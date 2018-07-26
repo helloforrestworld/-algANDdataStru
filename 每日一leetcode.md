@@ -81,3 +81,62 @@ var removeDuplicates = function(nums) {
     return nums.length
 };
 ```
+- https://leetcode-cn.com/problems/trapping-rain-water/description/ 42. 接雨水 难度: ⭐ ⭐       ⭐    
+```javascript
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var trap = function(height) {
+  let len = height.length
+  let leftMaxn = []
+  let rightMaxn = []
+
+  let maxn = 0
+  for (let i = 0; i < len; i++) {
+    leftMaxn[i] = maxn
+    maxn = Math.max(maxn, height[i])
+  }
+
+  maxn = 0;
+  for (let i = height.length; i--; ) {
+    rightMaxn[i] = maxn
+    maxn = Math.max(maxn, height[i])
+  }
+
+  let sum = 0
+  for (let i = 0; i < len; i++) {
+    let left = leftMaxn[i]
+    let right = rightMaxn[i]
+    let minn = Math.min(left, right)
+
+    if (minn > height[i]) {
+      sum += minn - height[i]
+    }
+  }
+
+  return sum
+};
+```
+
+- https://leetcode-cn.com/problems/container-with-most-water/description/ 11. 盛最多水的容器 ⭐ ⭐ 
+```javascript
+/**
+ * @param {number[]} height
+ * @return {number}
+ */
+var maxArea = function(height) {
+    let max = -Infinity
+    height.forEach((item, index) => {
+        let h, w,totalWater
+        for(let i = index + 1; i < height.length; i ++) {
+                h = height[i] > item ? item : height[i]
+                w = i - index
+                totalWater = w * h
+                if (totalWater > max) max = totalWater
+        }
+    })
+    
+    return max
+};
+```
