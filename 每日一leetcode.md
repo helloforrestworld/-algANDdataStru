@@ -140,3 +140,20 @@ var maxArea = function(height) {
     return max
 };
 ```
+- https://leetcode-cn.com/problems/palindrome-number/description/ 回文数 --- 题号9 难度: ⭐ 
+```javascript
+/**
+ * @param {number} x
+ * @return {boolean}
+ */
+var isPalindrome = function(x) {
+    let toStr = String(x), ret = true
+    for(let i = 0; i < toStr.length; i++) {
+        if (i >= ~~(toStr.length / 2))
+        if (toStr[i] !== toStr[toStr.length - 1 - i]) {
+            ret = false
+        }
+    }
+    return ret
+};
+```
