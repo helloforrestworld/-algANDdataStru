@@ -178,7 +178,7 @@ var isPalindrome = function(x) {
 }
 ```
 
-- https://leetcode-cn.com/problems/4sum/description/ 回文数 --- 题号 18 难度: ⭐⭐
+- https://leetcode-cn.com/problems/4sum/description/ 4SUM --- 题号 18 难度: ⭐⭐
 
 ```javascript
 /**
@@ -210,5 +210,51 @@ var fourSum = function(nums, target) {
     while (nums[i] === nums[i + 1]) i++
   }
   return ans
+}
+```
+
+- https://leetcode-cn.com/problems/3sum-closest/description/ 3SUM-closest --- 题号 16 难度: ⭐⭐
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var threeSumClosest = function(nums, target) {
+  var len = nums.length,
+    minDiff = Number.MAX_VALUE,
+    diff,
+    left,
+    right,
+    i,
+    j
+
+  nums.sort(function(a, b) {
+    return a - b
+  })
+
+  for (i = 0; i < len; i++) {
+    left = i + 1
+    right = len - 1
+
+    while (left < right) {
+      diff = target - nums[i] - nums[left] - nums[right]
+
+      if (diff === 0) {
+        return target
+      } else if (diff > 0) {
+        left++
+      } else {
+        right--
+      }
+
+      if (Math.abs(diff) < Math.abs(minDiff)) {
+        minDiff = diff
+      }
+    }
+  }
+
+  return target - minDiff
 }
 ```
