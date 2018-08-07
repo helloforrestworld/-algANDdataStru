@@ -258,3 +258,24 @@ var threeSumClosest = function(nums, target) {
   return target - minDiff
 }
 ```
+- https://leetcode-cn.com/problems/implement-strstr/description/ 实现strStr()--- 题号 28 难度: ⭐
+
+```javascript
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    if (needle === '') return 0
+    let times = haystack.length - needle.length + 1, ret = -1, len = needle.length
+    if (times <= 0) return -1
+    for(let i = 0; i < times; i++) {
+        if(haystack.substr(i, len) === needle) {
+            ret = i
+            break
+        }
+    }
+    return ret
+};
+```
