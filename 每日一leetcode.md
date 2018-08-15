@@ -258,7 +258,8 @@ var threeSumClosest = function(nums, target) {
   return target - minDiff
 }
 ```
-- https://leetcode-cn.com/problems/implement-strstr/description/ 实现strStr()--- 题号 28 难度: ⭐
+
+- https://leetcode-cn.com/problems/implement-strstr/description/ 实现 strStr()--- 题号 28 难度: ⭐
 
 ```javascript
 /**
@@ -267,110 +268,138 @@ var threeSumClosest = function(nums, target) {
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-    if (needle === '') return 0
-    let times = haystack.length - needle.length + 1, ret = -1, len = needle.length
-    if (times <= 0) return -1
-    for(let i = 0; i < times; i++) {
-        if(haystack.substr(i, len) === needle) {
-            ret = i
-            break
-        }
+  if (needle === '') return 0
+  let times = haystack.length - needle.length + 1,
+    ret = -1,
+    len = needle.length
+  if (times <= 0) return -1
+  for (let i = 0; i < times; i++) {
+    if (haystack.substr(i, len) === needle) {
+      ret = i
+      break
     }
-    return ret
-};
+  }
+  return ret
+}
 ```
+
 - https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/description/ 电话号码组合()--- 题号 17 难度: ⭐⭐⭐
+
 ```javascript
 /**
  * @param {string} digits
  * @return {string[]}
  */
-var ans, tmp;
+var ans, tmp
 
 function dfs(str, idx, digits) {
   if (idx === digits.length) {
-    ans.push(str);
-    return;
+    ans.push(str)
+    return
   }
 
-  var num = Number(digits[idx]);
-  if (num <= 1)
-    dfs(str, idx + 1, digits);
+  var num = Number(digits[idx])
+  if (num <= 1) dfs(str, idx + 1, digits)
   else {
     for (var i = 0, len = tmp[num].length; i < len; i++)
-      dfs(str + tmp[num][i], idx + 1, digits);
+      dfs(str + tmp[num][i], idx + 1, digits)
   }
 }
 
 var letterCombinations = function(digits) {
-  if (!digits.length)
-    return [];
+  if (!digits.length) return []
+  ;(tmp = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']),
+    (ans = [])
 
-  tmp = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'],
-  ans = [];
-
-  dfs('', 0, digits);
-  return ans;
-};
+  dfs('', 0, digits)
+  return ans
+}
 ```
+
 - https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/description/ 电话号码组合()--- 题号 17 难度: ⭐⭐⭐
+
 ```javascript
 /**
- * @param {string} s
+ * @param {string}
  * @return {number}
  */
 var romanToInt = function(s) {
-  var hash = {};
-  hash["I"] = 1;
-  hash["X"] = 10;
-  hash["C"] = 100;
-  hash["M"] = 1000;
-  hash["V"] = 5;
-  hash["L"] = 50;
-  hash["D"] = 500;
+  var hash = {}
+  hash['I'] = 1
+  hash['X'] = 10
+  hash['C'] = 100
+  hash['M'] = 1000
+  hash['V'] = 5
+  hash['L'] = 50
+  hash['D'] = 500
 
-  var sum = 0;
+  var sum = 0
 
   for (var i = 0, len = s.length; i < len; i++) {
-    var item = hash[s[i]];
+    var item = hash[s[i]]
 
-    var nextItem = i + 1 === len ? 0 : hash[s[i + 1]];
+    var nextItem = i + 1 === len ? 0 : hash[s[i + 1]]
 
     if (nextItem > item) {
-      sum += nextItem - item;
-      i++;
-    } else
-      sum += item;
+      sum += nextItem - item
+      i++
+    } else sum += item
   }
 
-  return sum;
-};
+  return sum
+}
 ```
+
 - https://leetcode-cn.com/problems/generate-parentheses/description/ 括号生成()--- 题号 22 难度: ⭐⭐⭐
+
 ```javascript
 /**
  * @param {number} n
  * @return {string[]}
  */
-var ans;
+var ans
 
 function dfs(s, left, right, n) {
   if (left === n && right === n) {
-    ans.push(s);
-    return;
+    ans.push(s)
+    return
   }
 
-  if (left + 1 <= n)
-    dfs(s + '(', left + 1, right, n);
+  if (left + 1 <= n) dfs(s + '(', left + 1, right, n)
 
-  if (right + 1 <= n && right + 1 <= left)
-    dfs(s + ')', left, right + 1, n);
-
+  if (right + 1 <= n && right + 1 <= left) dfs(s + ')', left, right + 1, n)
 }
 
 var generateParenthesis = function(n) {
-  ans = [];
-  dfs('', 0, 0, n);
-  return ans;
-};
+  ans = []
+  dfs('', 0, 0, n)
+  return ans
+}
+```
+
+- https://leetcode-cn.com/problems/generate-parentheses/description/ 括号生成()--- 题号 22 难度: ⭐⭐⭐
+
+```javascript
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var ans
+
+function dfs(s, left, right, n) {
+  if (left === n && right === n) {
+    ans.push(s)
+    return
+  }
+
+  if (left + 1 <= n) dfs(s + '(', left + 1, right, n)
+
+  if (right + 1 <= n && right + 1 <= left) dfs(s + ')', left, right + 1, n)
+}
+
+var generateParenthesis = function(n) {
+  ans = []
+  dfs('', 0, 0, n)
+  return ans
+}
 ```
