@@ -16,6 +16,8 @@ f76d089  on 1 Nov 2016
  @rye @dashed @aarian93p @Leandros @snisarg @mattjeffery @dybekm @eugpermar @starrify @chaosdefinition @arsenm @adericbourg
 
 53 lines (44 sloc)  430 Bytes
+
+*.vscode
 # Prerequisites
 *.d
 
