@@ -28,3 +28,42 @@
 - 内存中的表达式形式: 二进制(补码)、编码
 
 sizeof()运算符，给出某个类型或变量在内存中所占的字节数
+
+```c
+    int a = 6;
+    printf("%d", sizeof(a++));
+    printf("%d", a);
+    // a还是等于6
+    // sizeof是静态方法, 编译时候确认sizeof(i) i是什么内容 然后输出对应的字节数
+```
+
+- char 1 字节(8 比特)
+- short 2 字节
+- int 取决于编译器(CPU), 通常意义上的 1 个字
+- long 取决于编译器(CPU), 通常意义上的 1 个字
+- long long 8 个字节
+
+<html style="overflow:hidden">
+<!--在这里插入内容-->
+<span style="display:inline-block;padding:10px; width:100px;height:100px;border:1px solid black;">
+    CPU
+    <span style="display:inline-block;border:1px solid red;">寄存器</span>
+</span>
+<----总线--->
+<span style="display:inline-block;padding:10px; width:100px;height:100px;border:1px solid black;">
+    RAM
+</span>
+
+</html>
+
+- 32 位(64)的系统 每个寄存器能存放 32(64)比特大小
+- 总线每次传递也是 32 比特大小
+- int 所有表达的就是一个寄存器的大小
+
+### 关于补码
+
+计算机内部一切都是二进制
+
+- 18 ---> 00010010
+- 0 ---> 00000000
+- -18 ---> ?
