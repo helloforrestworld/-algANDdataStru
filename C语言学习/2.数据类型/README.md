@@ -380,17 +380,17 @@ int main() {
 
 #### 浮点数
 
-![image](EFAF84FC40CB46E0AF1D41333D7842CE)
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_15358213349249.png)
 
 - 关于范围
 
-![image](A46429C32AF846F48ADE877C467A84DC)
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/企业微信截图_15358215093291.png)
 如 float 的范围， 0 的两端，非常接近 0 的数值是无法表达的
 
 - 关于有效数字， float 表达 7 个数字位，超过 7 个就不准确，double 则是 15 个
 
 #### 浮点数输入输出
 
-![image](49D3C1ADA1994F86B799153C84162665)
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/企业微信截图_15358218122641.png)
 
 -
