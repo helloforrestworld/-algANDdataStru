@@ -531,3 +531,25 @@ var dailyTemperatures = function(temperatures) {
   return ans
 }
 ```
+
+- https://leetcode.com/problems/find-bottom-left-tree-value/description/ 题号 513 难度: ⭐⭐
+```javascript
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var findBottomLeftValue = function(root) {
+  let res = [];
+
+  let dfs = (node, step) => {
+    if (res[step] === undefined)
+      res[step] = node.val;
+
+    node.left && dfs(node.left, step + 1);
+    node.right && dfs(node.right, step + 1);
+  };
+
+  dfs(root, 0);
+  return res.pop();
+};
+```

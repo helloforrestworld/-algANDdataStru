@@ -392,5 +392,3 @@ int main() {
 #### 浮点数输入输出
 
 ![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/企业微信截图_15358218122641.png)
-
--
