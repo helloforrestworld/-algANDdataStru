@@ -392,3 +392,213 @@ int main() {
 #### 浮点数输入输出
 
 ![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/企业微信截图_15358218122641.png)
+
+#### 科学计数法
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/e.png)
+```c
+int main () {
+  double ff = 1234.56789;
+  printf("ff=%e", ff); // 1.2345678e+03;
+  printf("ff=%E", ff); // 1.2345678E+03;
+
+  double ff1 = 1E-10; // 可以字面量声明
+  print("%E, %f\n", ff1, ff1);
+  // 1.0E-10  0.000000
+  print("%E, %.10f\n", ff1, ff1); // 指定输出小数点后10位
+  // 1.0E-10  0.0000000000
+
+  return 0;
+}
+```
+
+#### 输出精度
+```c
+int main() {
+  printf("%.3f\n", -0.0049); // -0.005
+  printf("%.30f\n", -0.0049); // -0.00489999999999999999841793218991
+  printf("%.3f\n", -0.00049);  // -0.000
+  return 0;
+}
+```
+任意两数之间都有无数个数值，
+对于计算机来说，最终只能用离散的数字表达数字
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/float.png)
+如图点ABC就是double/float能精确表达的数, 而E则是在范围外的, 所以最后取得离它比较近的A作为值，
+double比float的刻度间距更小，所能表达的精确度更高
+
+
+#### 超过范围的浮点数
+- printf输出inf表示超过范围的浮点数
+- printf输出nan表示不存在的浮点数
+```c
+int main() {
+  printf("%f\n", 12.0 / 0.0); // inf
+  printf("%f\n", -12.0 / 0.0); // -inf
+  printf("%f\n", 0.0/ 0.0); // nan
+
+  printf("%d\n", 0.0/ 0.0); // 编译不通过,无穷大不能用整数表示
+  return 0;
+}
+```
+虽然浮点数的范围不包括无穷大，但是设计上可以用浮点数表示无穷大和无穷小
+
+#### 浮点运算的精度
+浮点数的运算是没有精度的
+```c
+  int main() {
+    float a, b, c;
+    a = 1.345f; // 不带f 默认是double
+    b = 1.123f;
+    c = a + b;
+    if (c == 2.468) {
+      printf("非常精确，它们相等\n");
+    } else {
+      printf("他们不相等, c=%.10f,或者 c=%f\n", c, c);
+    }
+    // 输出 "他们不相等, c=2.4679999352,或者 2.468000"
+    // so c=2.4679999352
+    return 0;
+  }
+```
+- f1 == f2 可能失败
+- fabs(f1 - f2) < 1e-12 / 1e-8 差值小于一定范围来判断是否近似相等
+- 另外一种思路,计算钱的时候1.23元可以用分来做单位， 表示为123分
+
+#### 浮点数的内部表达
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/float2.png)
+- 浮点数在计算机内部并不是真正的二进制数，而是一种编码的格式
+- 如果没有特殊需要，请选择double
+- 现代CPU能直接对double做硬件运算，性能不会比float差，在64位的机器上，数据的存取速度不会比float慢
+
+
+## 字符类型
+### 字符输入输出
+#### 字符定义
+- char是一种整数，也是一种特殊的类型：字符。这是因为
+  - 用单引号表示的字符字面量: 'a', '1'
+  - ''也是一个字符
+  - printf,scanf里面用%c来输入输出字符
+
+如果输入'1'这个字符给char c?
+```c
+  int main(){
+    char d = 1;
+    char c = '1';
+    if (c == d) {
+      printf("相等");
+    } else {
+      print("不相等");
+    }
+    printf("%d\n", c); // 49
+    printf("%d\n", d); // 1
+    return 0;
+  }
+```
+所以表示'1'的话有两种方式
+- scanf("%c", &c);   -> 1
+- scanf("%d". &c);  -> 49
+#### 混合输入
+- 有何不同？
+  - scanf("%d %c", &d, &c);
+  - scanf("%d%c", &d, &c);
+
+第一种
+```c
+int main() {
+  int d;
+  char c;
+  scanf("%d %c", &d, &c);
+  printf("d=%d, c='%c', c=%d\n", d, c, c);
+  // 输入12 1 => d = 12, c='1', c=49
+  // 输入12a => d = 12, c='a', c=97
+  // 输入12  1 => d = 12, c='1', c=49
+  return 0;
+}
+```c
+第二种
+int main() {
+  int d;
+  char c;
+  scanf("%d%c", &d, &c);
+  printf("d=%d, c='%c', c=%d\n", d, c, c);
+  // 输入12 1 => d = 12, c='', c=32
+  // 输入12a => d = 12, c='a', c=97
+  // 输入12  1 => d = 12, c='', c=32
+  return 0;
+}
+```
+也就是说不带空格的话，空格被识别而且读进去了，
+而带空格表示读完第一个数，再把空格都读完再去匹配第二个输入值.
+
+#### 字符计算
+加法: 一个字符加另外一个字符，等于该字符ASCII码表中的下一个字符
+```c
+int main() {
+  char c = 'A';
+  c++;
+  printf("%c\n", c); // 'B';
+}
+```
+减法: 得到两个字符的距离
+```c
+int main() {
+  int i = 'Z' - 'A';
+  printf("%d\n", i); // 25
+}
+```
+
+#### 逃逸字符
+用来表达无法打印出来的控制字符或特殊字符，它由一个反斜杠"\"开头，后面跟上要输出的字符。
+
+例如:
+```c
+int main() {
+  printf("我是一个兵, 来自\"老百姓\"");
+  // 这样双引号才能正确输出
+  return 0;
+}
+```
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/escape.png)
+
+
+## 类型转换
+### 自动类型转换
+- 当运算符的两边出现不一致的类型时，会自动转换成较大的类型
+ - 大的类型的意思是，它能表示的范围更大
+ - char -> short -> int -> long -> long long;
+ - int -> float -> double
+
+- 对于printf来说， 任何小于int的类型都会别转换为int; float则为转为double;
+- 但是scanf不会, 要输入short, 需要%hd; scanf需要准确知道数的大小;
+
+### 强制类型转换
+要把一个量强制转换成意外一个类型， (类型)值；
+- 栗子:
+ - (int)10.2
+ - (short)32
+
+注意这时候的安全性，小的变量不能表达大的变量
+- (short)32768
+```c
+int main() {
+  printf("%d\n", (short)32768); // -32768
+  printf("%d\n", (char)32768); // 0
+}
+```
+强制类型转换不改变值本身
+```c
+int main() {
+  int i = 100;
+  printf("%d\n", (short)i);
+  printf("%d\n", i); // 100
+}
+```
+强制类型转换的优先级高于四则运算
+```c
+int main() {
+  double a = 1.0;
+  double b = 2.0;
+  // int i = (int)a / b; error
+  int i = (int)(a / b); // 0
+}
+```
