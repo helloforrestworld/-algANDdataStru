@@ -553,3 +553,37 @@ var findBottomLeftValue = function(root) {
   return res.pop();
 };
 ```
+
+- https://leetcode-cn.com/problems/house-robber-ii/description/ 题号 213 难度: ⭐⭐⭐
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function(nums) {
+    // 不能同时打劫第一家和最后一家
+    function robHouses(nums) {
+        var odd = 0;
+        var even = 0;
+
+        for(var i = 0; i < nums.length; i++) {
+            var num = nums[i];
+            if(i % 2 === 0) {
+                even = Math.max(even + num, odd);
+            } else {
+                odd = Math.max(odd + num, even);
+            }
+        }
+
+        return Math.max(even, odd);
+    }
+
+    if(nums.length <= 1) {
+        return robHouses(nums);
+    }
+
+    var robHousesExceptLast = robHouses(nums.slice(0, -1));
+    var robHousesExceptFirst = robHouses(nums.slice(1));
+    return Math.max(robHousesExceptLast, robHousesExceptFirst);
+};
+```
