@@ -410,3 +410,58 @@ int main() {
   int i = (int)(a / b); // 0
 }
 ```
+
+## 逻辑类型
+### bool
+bool并不是真正意义上的原生类型,需要引入<stdbool.h>文件才能使用true、false。
+栗子:
+```c
+#include <stdbool.h>
+#include <stdio.h>
+int main() {
+  bool a  = 6 > 5;
+  bool b = true;
+  // t = 2; // bool实际上也是整数， 所以这样也能过编译
+  printf("%d\n", b); // 只能整数的方式输出, 结果是1
+  return 0;
+}
+```
+### 逻辑运算
+- 逻辑运算是对逻辑量进行运算，结果只有0或者1
+- 逻辑量是关系运算或逻辑运算的结果
+
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/bool.png)
+
+```c
+#include <stdio.h>
+int main() {
+  int a = 5;
+  if (a > 4 && a < 6) {
+    printf("通过");
+  }
+  return 0;
+}
+```
+判断一个字符是否是大写字母
+```c
+#include <stdio.h>
+int main() {
+  char c = 'b';
+  if (c >= 'A' && c <= 'Z') {
+    printf("大写字母");
+  }
+  return 0;
+}
+```
+
+逻辑运算优先级
+>  ! > && > ||
+
+各种运算符优先级
+![image](https://helloforrestworld.github.io/-algANDdataStru-/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/2.%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/screen_shot/zindex.png)
+
+短路
+- 对于 && 左边false 直接false, 不再往右运行
+- 对于 || 左边true 直接true, 不再往右运行
+
+### 条件运算符(三目)
