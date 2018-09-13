@@ -533,61 +533,64 @@ var dailyTemperatures = function(temperatures) {
 ```
 
 - https://leetcode.com/problems/find-bottom-left-tree-value/description/ 题号 513 难度: ⭐⭐
+
 ```javascript
 /**
  * @param {TreeNode} root
  * @return {number}
  */
 var findBottomLeftValue = function(root) {
-  let res = [];
+  let res = []
 
   let dfs = (node, step) => {
-    if (res[step] === undefined)
-      res[step] = node.val;
+    if (res[step] === undefined) res[step] = node.val
 
-    node.left && dfs(node.left, step + 1);
-    node.right && dfs(node.right, step + 1);
-  };
+    node.left && dfs(node.left, step + 1)
+    node.right && dfs(node.right, step + 1)
+  }
 
-  dfs(root, 0);
-  return res.pop();
-};
+  dfs(root, 0)
+  return res.pop()
+}
 ```
 
 - https://leetcode-cn.com/problems/house-robber-ii/description/ 题号 213 难度: ⭐⭐⭐
+
 ```javascript
 /**
  * @param {number[]} nums
  * @return {number}
  */
 var rob = function(nums) {
-    // 不能同时打劫第一家和最后一家
-    function robHouses(nums) {
-        var odd = 0;
-        var even = 0;
+  // 不能同时打劫第一家和最后一家
+  function robHouses(nums) {
+    var odd = 0
+    var even = 0
 
-        for(var i = 0; i < nums.length; i++) {
-            var num = nums[i];
-            if(i % 2 === 0) {
-                even = Math.max(even + num, odd);
-            } else {
-                odd = Math.max(odd + num, even);
-            }
-        }
-
-        return Math.max(even, odd);
+    for (var i = 0; i < nums.length; i++) {
+      var num = nums[i]
+      if (i % 2 === 0) {
+        even = Math.max(even + num, odd)
+      } else {
+        odd = Math.max(odd + num, even)
+      }
     }
 
-    if(nums.length <= 1) {
-        return robHouses(nums);
-    }
+    return Math.max(even, odd)
+  }
 
-    var robHousesExceptLast = robHouses(nums.slice(0, -1));
-    var robHousesExceptFirst = robHouses(nums.slice(1));
-    return Math.max(robHousesExceptLast, robHousesExceptFirst);
-};
+  if (nums.length <= 1) {
+    return robHouses(nums)
+  }
+
+  var robHousesExceptLast = robHouses(nums.slice(0, -1))
+  var robHousesExceptFirst = robHouses(nums.slice(1))
+  return Math.max(robHousesExceptLast, robHousesExceptFirst)
+}
 ```
+
 - https://leetcode.com/problems/daily-temperatures/description/ 题号 739 难度: ⭐⭐⭐
+
 ```javascript
 /**
  * @param {number[]} temperatures
@@ -612,9 +615,11 @@ var dailyTemperatures = function(temperatures) {
   }
 
   return ans
-};
+}
 ```
+
 - https://leetcode.com/problems/degree-of-an-array/description/ 题号 697 难度: ⭐
+
 ```javascript
 /**
  * @param {number[]} nums
@@ -640,5 +645,33 @@ var findShortestSubArray = function(nums) {
   }
 
   return ans
-};
+}
+```
+
+- https://leetcode.com/problems/teemo-attacking/description/ 题号 495 难度: ⭐⭐
+
+```javascript
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+var findPoisonedDuration = function(timeSeries, duration) {
+  let ans = 0
+
+  for (let i = 0, len = timeSeries.length; i < len; i++) {
+    if (i === len - 1) {
+      ans += duration
+      continue
+    }
+
+    let curItem = timeSeries[i],
+      nextItem = timeSeries[i + 1]
+
+    if (curItem + duration <= nextItem) ans += duration
+    else ans += nextItem - curItem
+  }
+
+  return ans
+}
 ```
