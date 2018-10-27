@@ -929,34 +929,6 @@ var maxProfit = function(prices) {
 当x1 = x2，y1!=y2时，为垂直连线。计算斜率时分母为0会出错。
 当x1 = x2，y1 = y2时，两点重合。则(x2, y2)和所有(x1, y1)的连线共线。
 
-
- 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
 */
 class Solution {
 public:
@@ -1163,5 +1135,34 @@ var isSameTree = function(p, q) {
   }
 
   return queue1.length === queue2.length
+}
+```
+- https://leetcode.com/problems/happy-number/ 202. 快乐数 难度: ⭐
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+// reference: http://www.programcreek.com/2014/03/leetcode-maximum-product-subarray-java/
+var maxProduct = function(nums) {
+  if (nums === null || nums.length === 0) {
+    return 0
+  }
+
+  var max = nums[0]
+  var min = max
+  var ans = max
+
+  for (var i = 1; i < nums.length; i++) {
+    var tmax = nums[i] * max
+    var tmin = nums[i] * min
+
+    max = Math.max(Math.max(tmax, nums[i]), tmin)
+    min = Math.min(Math.min(tmax, nums[i]), tmin)
+    ans = Math.max(ans, max)
+  }
+
+  return ans
 }
 ```
