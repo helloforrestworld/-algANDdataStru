@@ -1137,6 +1137,7 @@ var isSameTree = function(p, q) {
   return queue1.length === queue2.length
 }
 ```
+
 - https://leetcode.com/problems/happy-number/ 202. 快乐数 难度: ⭐
 
 ```javascript
@@ -1175,55 +1176,80 @@ var maxProduct = function(nums) {
  * @return {number}
  */
 var romanToInt = function(s) {
-    var result = 0;
+  var result = 0
 
-    for(var i = 0; i < s.length; i++){
-        if(i > 0 && (c2n(s[i]) > c2n(s[i-1]))){
-            result -= 2*c2n(s[i-1]); // because previously added [!!!]
-        }
-
-        result += c2n(s[i]);
+  for (var i = 0; i < s.length; i++) {
+    if (i > 0 && c2n(s[i]) > c2n(s[i - 1])) {
+      result -= 2 * c2n(s[i - 1]) // because previously added [!!!]
     }
 
-    return result;
-};
+    result += c2n(s[i])
+  }
 
-var c2n = function(c){
-    switch(c){
-        case 'I': return 1;
-        case 'V': return 5;
-        case 'X': return 10;
-        case 'L': return 50;
-        case 'C': return 100;
-        case 'D': return 500;
-        case 'M': return 1000;
-        default: return 0;
-    }
+  return result
+}
+
+var c2n = function(c) {
+  switch (c) {
+    case 'I':
+      return 1
+    case 'V':
+      return 5
+    case 'X':
+      return 10
+    case 'L':
+      return 50
+    case 'C':
+      return 100
+    case 'D':
+      return 500
+    case 'M':
+      return 1000
+    default:
+      return 0
+  }
 }
 ```
 
-- https://leetcode-cn.com/problems/excel-sheet-column-title/description/ 168. Excel表列名称 ⭐
+- https://leetcode-cn.com/problems/excel-sheet-column-title/description/ 168. Excel 表列名称 ⭐
+
 ```javascript
 /**
  * @param {number} n
  * @return {string}
  */
 
-var getLetter = function(num){
-    return String.fromCharCode(num + 'A'.charCodeAt(0));
+var getLetter = function(num) {
+  return String.fromCharCode(num + 'A'.charCodeAt(0))
 }
 
 var convertToTitle = function(n) {
-    var result = "";
-    var base = 1;
+  var result = ''
+  var base = 1
 
-    while(n > 0){
-        n--; // [!!!] key
-        rem = n%26;
-        result = getLetter(rem) + result;
-        n = parseInt(n/26);
-    }
+  while (n > 0) {
+    n-- // [!!!] key
+    rem = n % 26
+    result = getLetter(rem) + result
+    n = parseInt(n / 26)
+  }
 
-    return result;
-};
+  return result
+}
+```
+
+- https://leetcode-cn.com/problems/regular-expression-matching/description/ 110. 正则表达式匹配 ⭐⭐⭐
+
+```js
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+
+var isMatch = function(s, p) {
+  var p = '^' + p + '$';
+  var pattern = new RegExp(p, 'g');
+  return pattern.test(s);
+}
 ```
