@@ -1386,7 +1386,6 @@ var generatePermute = function(nums, currentResult, finalResult) {
   }
 }
 
-
 var permute = function(nums) {
   var result = []
   var visited = []
@@ -1434,7 +1433,9 @@ var permuteAux = function(nums, partialNums) {
   return listArrays
 }
 ```
+
 - https://leetcode-cn.com/problems/word-ladder/ 127. 单词接龙 ⭐⭐
+
 ```js
 /**
  * @param {string} beginWord
@@ -1476,5 +1477,49 @@ var ladderLength = function(beginWord, endWord, wordList) {
   }
 
   return 0
+}
+```
+
+- https://leetcode-cn.com/problems/longest-consecutive-sequence/description/ 128. 最长连续序列 ⭐⭐⭐
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var longestConsecutive = function(nums) {
+  var maxLen = -Infinity
+  var hash = {}
+
+  for (var i = 0; i < nums.length; i++) {
+    hash[nums[i]] = 1
+  }
+
+  var visited = {}
+
+  for (i = 0; i < nums.length; i++) {
+    var val = nums[i]
+    if (visited[val]) {
+      continue
+    }
+    visited[val] = true
+    var len = 1
+    var preVal = val - 1
+    while (hash[preVal]) {
+      len++
+      visited[preVal--] = true
+    }
+    var nxtVal = val + 1
+    while (hash[nxtVal]) {
+      len++
+      visited[nxtVal++] = true
+    }
+
+    if (len > maxLen) {
+      maxLen = len
+    }
+  }
+
+  return maxLen
 }
 ```
