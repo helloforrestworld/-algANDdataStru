@@ -1618,7 +1618,7 @@ var maxProfit = function(prices) {
 }
 ```
 
-- https://leetcode-cn.com/problems/jump-game-ii/ 45 跳跃游戏2 ⭐⭐
+- https://leetcode-cn.com/problems/jump-game-ii/ 45 跳跃游戏 2 ⭐⭐
 
 ```js
 /**
@@ -1626,24 +1626,85 @@ var maxProfit = function(prices) {
  * @return {number}
  */
 var jump = function(nums) {
-    var curMax = 0;
-    var nJumps = 0;
-    var i = 0;
-    var n = nums.length;
+  var curMax = 0
+  var nJumps = 0
+  var i = 0
+  var n = nums.length
 
-    while(curMax < n - 1) {
-        var lastMax = curMax;
-        // go through covered area
-        for(; i <= lastMax; i++) {
-            curMax = Math.max(curMax, i+nums[i]);
-        }
-        nJumps++;
-        // if cannot make progress in the covered area, give up
-        if(lastMax === curMax) {
-            return -1;
-        }
+  while (curMax < n - 1) {
+    var lastMax = curMax
+    // go through covered area
+    for (; i <= lastMax; i++) {
+      curMax = Math.max(curMax, i + nums[i])
+    }
+    nJumps++
+    // if cannot make progress in the covered area, give up
+    if (lastMax === curMax) {
+      return -1
+    }
+  }
+
+  return nJumps
+}
+```
+
+- https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/ 121 股票买卖时机 ⭐⭐
+
+```js
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+  if (prices === null || prices.length === 0) {
+    return 0
+  }
+
+  var max = 0
+  var diff = 0
+  var min = Infinity
+
+  for (var i = 0; i < prices.length; i++) {
+    var price = prices[i]
+    if (min > price) {
+      min = price
     }
 
-    return nJumps;
-};
+    diff = price - min
+
+    if (max < diff) {
+      max = diff
+    }
+  }
+
+  return max
+}
+```
+
+- https://leetcode-cn.com/problems/pascals-triangle-ii/ 119 杨辉三角 ⭐⭐
+
+```js
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function(rowIndex) {
+  if (rowIndex === null || rowIndex < 0) {
+    return []
+  }
+
+  var result = [1]
+
+  for (var i = 1; i <= rowIndex; i++) {
+    var cur = []
+
+    for (var j = 0; j <= i; j++) {
+      cur[j] = (result[j - 1] || 0) + (result[j] || 0)
+    }
+
+    result = cur
+  }
+
+  return result
+}
 ```
