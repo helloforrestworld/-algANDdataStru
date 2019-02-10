@@ -1710,6 +1710,7 @@ var getRow = function(rowIndex) {
 ```
 
 - https://leetcode-cn.com/problems/rotate-function/ 396 旋转函数 ⭐⭐
+
 ```js
 /**
  * @param {number[]} A
@@ -1735,5 +1736,25 @@ var maxRotateFunction = function(A) {
   }
 
   return ans
+}
+```
+
+- https://leetcode-cn.com/problems/distribute-candies/ 575 分糖果 ⭐⭐
+
+```js
+/**
+ * @param {number[]} candies
+ * @return {number}
+ */
+var distributeCandies = function(candies) {
+  let p = new Map()
+
+  for (let item of candies) {
+    p.set(item, ~~p.get(item) + 1)
+  }
+
+  let res = [...p.values()].sort((a, b) => a - b)
+
+  return Math.min(res.length, candies.length >> 1)
 }
 ```
