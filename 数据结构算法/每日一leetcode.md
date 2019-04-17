@@ -1758,36 +1758,78 @@ var distributeCandies = function(candies) {
   return Math.min(res.length, candies.length >> 1)
 }
 ```
-- https://leetcode-cn.com/problems/repeated-dna-sequences/submissions/ 187 重复的DNA序列 ⭐⭐
+
+- https://leetcode-cn.com/problems/repeated-dna-sequences/submissions/ 187 重复的 DNA 序列 ⭐⭐
+
 ```js
 /**
  * @param {string} s
  * @return {string[]}
  */
 var findRepeatedDnaSequences = function(s) {
-  var map = []
-    , hash = new Set()
-    , hash_ans = new Set()
-    , ans = [];
+  var map = [],
+    hash = new Set(),
+    hash_ans = new Set(),
+    ans = []
 
-  map['A'] = 0, map['C'] = 1, map['G'] = 2, map['T'] = 3;
+  ;(map['A'] = 0), (map['C'] = 1), (map['G'] = 2), (map['T'] = 3)
 
-  var tmp = 0;
+  var tmp = 0
   for (var i = 0, len = s.length; i < len; i++) {
-    tmp = tmp << 2 | map[s[i]];
-    if (i < 9) continue;
-    if (i > 9) tmp = tmp & 0xfffff;
+    tmp = (tmp << 2) | map[s[i]]
+    if (i < 9) continue
+    if (i > 9) tmp = tmp & 0xfffff
 
-    if (!hash.has(tmp))
-      hash.add(tmp);
+    if (!hash.has(tmp)) hash.add(tmp)
     else {
       if (!hash_ans.has(tmp)) {
-        hash_ans.add(tmp);
-        ans.push(s.substring(i - 9, i + 1));
+        hash_ans.add(tmp)
+        ans.push(s.substring(i - 9, i + 1))
       }
     }
   }
 
-  return ans;
-};
+  return ans
+}
+```
+
+- 535 https://leetcode.com/problems/encode-and-decode-tinyurl/
+
+```javascript
+let [p, index] = [new Map(), 0]
+
+var base62 = n => {
+  let str = '0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ'
+  let len = str.length
+  let ret = ''
+
+  do {
+    ret += str[n % len]
+    n = ~~(n / len)
+  } while (n)
+
+  return ret
+}
+
+/**
+ * Encodes a URL to a shortened URL.
+ *
+ * @param {string} longUrl
+ * @return {string}
+ */
+var encode = function(longUrl) {
+  let shortUrl = base62(index++)
+  p.set(shortUrl, longUrl)
+  return shortUrl
+}
+
+/**
+ * Decodes a shortened URL to its original URL.
+ *
+ * @param {string} shortUrl
+ * @return {string}
+ */
+var decode = function(shortUrl) {
+  return p.get(shortUrl)
+}
 ```
